@@ -6,8 +6,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Groqy AI Dashboard",
-  description: "AI-powered agents for teams",
-    generator: 'v0.app'
+  description: "AI-powered hybrid human-agent team management platform",
 }
 
 export default function RootLayout({

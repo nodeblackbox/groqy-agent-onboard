@@ -1,256 +1,378 @@
-# 🤖 Groqy Agent - AI-Powered Agency Management Platform
+# Groqy Agent
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/nodeblackboxs-projects/v0-groqy-agent-bk)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/tAPipdTp0Ka)
-[![Powered by Groq](https://img.shields.io/badge/Powered%20by-Groq-orange?style=for-the-badge)](https://groq.com)
+**AI-Powered Human-Agent Hybrid Team Management Platform**
 
-> **A next-generation AI agency management platform that combines human and AI team members to streamline workflows, automate tasks, and boost productivity.**
+[![Next.js](https://img.shields.io/badge/Next.js_16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Postgres](https://img.shields.io/badge/Neon_Postgres-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://neon.tech)
+[![Groq](https://img.shields.io/badge/Groq_LLM-F55036?style=for-the-badge)](https://groq.com)
 
-## 🌟 Overview
+---
 
-Groqy Agent is an intelligent agency management dashboard that seamlessly integrates AI agents with human team members. Built with Next.js 16 and powered by Groq's ultra-fast LLM inference, it provides a comprehensive platform for managing teams, workflows, tasks, and analytics in a unified interface.
+## What This Project Does
 
-### Key Features
+Groqy Agent is a **full-stack agency management platform** designed to screen, onboard, and manage hybrid teams of humans and AI agents. It solves a real problem: how do you evaluate whether a person (or an AI) can actually complete tasks, collaborate in workflows, and deliver results?
 
-- 🤝 **Hybrid Teams**: Manage both human and AI team members in a single platform
-- 🚀 **AI Agent Creation**: Build custom AI agents with specific roles and capabilities
-- 📊 **Real-time Analytics**: Monitor team performance, task completion, and agent status
-- 🔄 **Workflow Automation**: Design and execute complex workflows with visual tools
-- 📅 **Smart Planning**: AI-powered task generation and weekly planning
-- 🎯 **Kanban Boards**: Organize tasks with drag-and-drop interfaces
-- 📈 **Performance Tracking**: Track metrics for both human and AI team members
-- 🔍 **Vector Search**: Powered by Qdrant for intelligent data retrieval
-- 🌐 **Web Search**: Integrated Exa search capabilities
+The platform provides:
 
-## 🏗️ Architecture
+- **Candidate screening** — assign real tasks to candidates, track their progress through a Kanban pipeline, and evaluate their output quality before making hiring decisions
+- **Human-AI hybrid teams** — manage both human team members and autonomous AI agents in the same workspace, with shared task queues, workflows, and performance metrics
+- **Agentic task automation** — AI agents powered by Groq's ultra-fast LLM inference can generate tasks, process data, create content, and execute multi-step workflows autonomously
+- **Full operational visibility** — command center, analytics dashboards, timetable check-ins, and weekly planners give complete oversight of who's doing what
+
+---
+
+## Core Features
+
+### Command Center
+Real-time operational dashboard showing active agents, running workflows, completed tasks, and system load. Includes a live agent network visualization and an animated terminal showing agent activity.
+
+### Hybrid Team Management
+Unified view of all team members — human and AI. Filter by type, search by name/role, view individual performance metrics (tasks completed, in-progress, performance score). Each member has a status indicator (Online, Offline, Idle, Busy).
+
+### Kanban Board
+Full drag-and-drop task management with 5 columns: **Backlog → In Progress → Review → QA → Done**. Tasks carry priority levels, assignees, due dates, tags, comments, and file attachments. Supports task submission workflows with QA approval gates.
+
+### Task Management & Screening
+Dedicated task views for creating, assigning, filtering, and tracking tasks. Tasks can be assigned to both humans and AI agents. The admin view provides task creation, assignment, status filtering, and search — designed for screening candidates by giving them real work and evaluating delivery.
+
+### AI Agent System
+Visual agent pipeline with 5 agent types: **Processor, Analyzer, Creator, Reviewer, Deployer**. Each agent has capabilities, processing speed, accuracy metrics, and current load. Agents connect through a node-based workflow graph where tasks flow through processing stages.
+
+### Agent Creation Flow
+5-step wizard for creating new AI agents:
+1. Select agent type (Personal Assistant, Research Assistant, Content Creator, Data Analyst, Custom)
+2. Configure name, description, and skills
+3. Upload resume/context documents for agent personality
+4. Select voice profile
+5. Review and deploy
+
+### AI Task Generator
+Autonomous agent that generates tasks based on project context. Simulates an agentic reasoning process — initializing, analyzing requirements, identifying priorities, scanning backlog, then generating structured task objects with title, description, priority, category, and due dates.
+
+### Workflow Designer
+Multi-tab workflow tool with:
+- **Diagram Editor** — Mermaid-based visual workflow diagrams with zoom, node selection, and notes
+- **Agent Manager** — assign agents to workflow steps, monitor automation tasks
+- **Cosmic Nexus** — advanced agent orchestration with workflow execution
+- **GitHub Integration** — connect workflows to repositories
+
+### Weekly Planner
+Time-grid scheduler showing agent/team member assignments across the week. Color-coded by agent type, with priority indicators and status tracking (Confirmed, Pending, Cancelled).
+
+### Timetable & Check-ins
+Time tracking system with check-in/check-out, per-task time logging, daily notes, and weekly summaries. Tracks total hours, average hours/day, and most time-intensive tasks.
+
+### Analytics Dashboard
+Performance analytics with:
+- Weekly/monthly/quarterly views
+- Bar charts (tasks, bugs, workflows by day)
+- Line charts (monthly trends)
+- Team performance comparisons
+- Export and filter capabilities
+
+### Admin Panel
+Administrative task management with create, assign, filter, and search. Supports task lifecycle management from creation through assignment to completion, with time tracking.
+
+---
+
+## Architecture
 
 ### Tech Stack
 
-- **Frontend**: Next.js 16 (App Router), React 19, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui components
-- **AI/ML**: Groq API (ultra-fast LLM inference)
-- **Vector Database**: Qdrant Cloud
-- **Search**: Exa API
-- **Animations**: Framer Motion
-- **Charts**: Recharts
-- **State Management**: React Context API
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Framework** | Next.js 16 (App Router) | Server/client rendering, API routes, file-based routing |
+| **Language** | TypeScript | Type safety across the entire codebase |
+| **UI** | React 19 + shadcn/ui | Component library with Radix UI primitives |
+| **Styling** | Tailwind CSS 3 | Utility-first CSS with custom dark theme |
+| **Database** | Neon Postgres (Serverless) | Persistent storage via Drizzle ORM |
+| **AI/LLM** | Groq API | Sub-second LLM inference for agent reasoning |
+| **Vector DB** | Qdrant Cloud | Semantic search, agent memory, RAG embeddings |
+| **Search** | Exa API | Real-time web search for agents |
+| **ORM** | Drizzle ORM | Type-safe SQL queries with schema-first design |
+| **Charts** | Recharts | Data visualization for analytics |
+| **Animation** | Framer Motion | Smooth UI transitions and micro-interactions |
+| **State** | React Context API | Client-side state management |
 
 ### Project Structure
 
 ```
 groqy-agent-onboard/
-├── app/                      # Next.js app directory
-│   ├── layout.tsx           # Root layout
-│   ├── page.tsx             # Home page
-│   └── globals.css          # Global styles
+├── app/
+│   ├── api/
+│   │   └── db/
+│   │       ├── health/route.ts        # Database health check endpoint
+│   │       └── migrate/route.ts       # Database migration endpoint
+│   ├── layout.tsx                     # Root layout with providers
+│   ├── page.tsx                       # Entry point → Dashboard
+│   └── globals.css                    # Tailwind + shadcn CSS variables
 ├── components/
-│   ├── dashboard/           # Dashboard components
-│   │   ├── admin-view.tsx
-│   │   ├── agent-creation-flow.tsx
-│   │   ├── agent-system.tsx
-│   │   ├── analytics-view.tsx
-│   │   ├── command-center.tsx
-│   │   ├── kanban-board.tsx
-│   │   ├── task-generator-agent.tsx
-│   │   ├── team-management.tsx
-│   │   ├── workflow-designer.tsx
-│   │   └── ...
-│   └── ui/                  # Reusable UI components (shadcn/ui)
+│   ├── dashboard/
+│   │   ├── dashboard.tsx              # Main dashboard shell + view router
+│   │   ├── sidebar.tsx                # Navigation sidebar
+│   │   ├── header.tsx                 # Top bar with agency selector
+│   │   ├── command-center.tsx         # Command center view
+│   │   ├── team-management.tsx        # Human + AI team management
+│   │   ├── kanban-board.tsx           # Drag-and-drop Kanban
+│   │   ├── tasks-view.tsx             # Task list with file uploads
+│   │   ├── workflows-view.tsx         # Workflow templates
+│   │   ├── workflow-designer.tsx      # Visual workflow builder
+│   │   ├── weekly-planner.tsx         # Weekly schedule grid
+│   │   ├── timetable-view.tsx         # Check-in/check-out tracking
+│   │   ├── analytics-view.tsx         # Performance charts
+│   │   ├── admin-view.tsx             # Admin task management
+│   │   ├── agent-system.tsx           # Agent pipeline visualization
+│   │   ├── agent-creation-flow.tsx    # 5-step agent creation wizard
+│   │   ├── task-generator-agent.tsx   # AI task generation
+│   │   ├── onboarding.tsx             # First-run onboarding flow
+│   │   └── ...                        # Supporting components
+│   └── ui/                            # 30+ shadcn/ui components
 ├── context/
-│   └── agency-context.tsx   # Global state management
-├── hooks/                   # Custom React hooks
-├── lib/                     # Utility functions
-└── utils/                   # Helper utilities
-
+│   └── agency-context.tsx             # Global agency/team/member state
+├── lib/
+│   ├── db/
+│   │   ├── index.ts                   # Neon + Drizzle connection
+│   │   ├── schema.ts                  # Full database schema (18 tables)
+│   │   ├── queries.ts                 # Type-safe query functions
+│   │   └── migrate.ts                 # Migration runner
+│   └── utils.ts                       # Utility functions (cn, etc.)
+├── drizzle.config.ts                  # Drizzle Kit configuration
+├── tailwind.config.js                 # Tailwind + shadcn theme
+├── postcss.config.mjs                 # PostCSS configuration
+└── next.config.mjs                    # Next.js configuration
 ```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ or compatible runtime
-- pnpm (recommended) or npm
-- Groq API key ([Get one here](https://console.groq.com/keys))
-- Qdrant Cloud account ([Sign up](https://cloud.qdrant.io))
-- Exa API key ([Get one here](https://exa.ai))
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/groqy-agent-onboard.git
-   cd groqy-agent-onboard
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npx pnpm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env.local` file in the root directory (already configured):
-   ```env
-   # Groq API Configuration
-   GROQ_API_KEY=your_groq_api_key
-   NEXT_PUBLIC_GROQ_API_KEY=your_groq_api_key
-
-   # Qdrant Vector Database Configuration
-   QDRANT_URL=your_qdrant_cluster_url
-   QDRANT_API_KEY=your_qdrant_api_key
-
-   # Exa Search API Configuration
-   EXA_API_KEY=your_exa_api_key
-
-   # Team Configuration
-   TEAM_ID=your_team_id
-   TEAM_RATE_LIMIT=10
-   ```
-
-4. **Run the development server**
-   ```bash
-   npx pnpm dev
-   ```
-
-5. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📖 Usage Guide
-
-### Dashboard Views
-
-1. **Command Center**: Main dashboard with overview of all activities
-2. **Team Management**: Manage human and AI team members
-3. **Tasks**: Kanban-style task management
-4. **Workflows**: Design and execute automated workflows
-5. **Analytics**: Performance metrics and insights
-6. **Weekly Planner**: AI-assisted weekly planning
-7. **Admin**: System configuration and settings
-
-### Creating AI Agents
-
-1. Navigate to the **Agent Creation** flow
-2. Define agent properties:
-   - Name and role
-   - Capabilities and skills
-   - Model selection (Groq models)
-   - Tool access permissions
-3. Configure agent behavior and constraints
-4. Deploy and monitor agent performance
-
-### Task Generation
-
-The AI Task Generator can automatically create tasks based on:
-- Project requirements
-- Team capacity
-- Historical data
-- Priority levels
-
-## 🔧 API Integration
-
-### Groq API
-
-The platform uses Groq's ultra-fast LLM inference for:
-- Agent reasoning and decision-making
-- Natural language task generation
-- Workflow automation
-- Content creation
-
-**Supported Models**:
-- `openai/gpt-oss-120b` - High-performance reasoning
-- `llama-3.3-70b-versatile` - Versatile general-purpose
-- `llama-3.1-8b-instant` - Fast responses
-
-### Qdrant Vector Database
-
-Used for:
-- Semantic search across tasks and documents
-- Agent memory and context retrieval
-- Knowledge base management
-
-### Exa Search
-
-Integrated for:
-- Web search capabilities
-- Real-time information retrieval
-- Research and data gathering
-
-## 🛠️ Development
-
-### Available Scripts
-
-```bash
-# Development server
-npx pnpm dev
-
-# Production build
-npx pnpm build
-
-# Start production server
-npx pnpm start
-
-# Lint code
-npx pnpm lint
-```
-
-### Adding New Features
-
-1. Create components in `components/dashboard/`
-2. Add routes in `app/` directory
-3. Update context in `context/agency-context.tsx`
-4. Integrate with Groq API for AI features
-
-## 🔐 Security Best Practices
-
-- ✅ API keys stored in environment variables
-- ✅ Never commit `.env.local` to version control
-- ✅ Use server-side API routes for sensitive operations
-- ✅ Implement rate limiting for API calls
-- ✅ Validate and sanitize all user inputs
-
-## 📊 Performance
-
-- **Groq Inference**: Sub-second response times
-- **Turbopack**: Fast development builds with Next.js 16
-- **Code Splitting**: Automatic optimization
-- **Image Optimization**: Built-in Next.js image optimization
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🔗 Links
-
-- **Live Demo**: [https://vercel.com/nodeblackboxs-projects/v0-groqy-agent-bk](https://vercel.com/nodeblackboxs-projects/v0-groqy-agent-bk)
-- **v0 Chat**: [https://v0.app/chat/tAPipdTp0Ka](https://v0.app/chat/tAPipdTp0Ka)
-- **Groq Console**: [https://console.groq.com](https://console.groq.com)
-- **Qdrant Cloud**: [https://cloud.qdrant.io](https://cloud.qdrant.io)
-
-## 💬 Support
-
-For questions or issues:
-- Open an issue on GitHub
-- Check the [Groq documentation](https://console.groq.com/docs)
-- Review [Next.js documentation](https://nextjs.org/docs)
-
-## 🙏 Acknowledgments
-
-- Built with [v0.app](https://v0.app) by Vercel
-- Powered by [Groq](https://groq.com) for ultra-fast AI inference
-- UI components from [shadcn/ui](https://ui.shadcn.com)
-- Vector search by [Qdrant](https://qdrant.tech)
 
 ---
 
-**Made with ❤️ by the Groqy Agent team**
+## Database Schema
+
+The database is designed around the core entities of the platform. **18 tables** with full referential integrity, indexes for query performance, and JSONB columns for flexible metadata.
+
+### Entity Relationship Overview
+
+```
+users ──────────┐
+                │
+agencies ◄──────┤ (owner)
+  │             │
+  ├── teams     │
+  │     │       │
+  │     └── team_members ──┬── agents
+  │              │         │     │
+  │              │         │     ├── agent_logs
+  │              │         │     ├── workflow_agents
+  │              │         │     └── workflow_steps
+  │              │         │
+  │              ├── tasks ┬── kanban_cards
+  │              │         ├── task_attachments
+  │              │         └── time_entry_tasks
+  │              │
+  │              ├── scheduled_tasks (weekly planner)
+  │              └── time_entries (check-ins)
+  │
+  ├── workflows ──── workflow_steps
+  ├── analytics_snapshots
+  └── notifications
+  
+embeddings (RAG metadata → Qdrant vectors)
+```
+
+### Table Descriptions
+
+| Table | Purpose | Key Fields |
+|-------|---------|------------|
+| `users` | User accounts and authentication | email, name, role, is_admin |
+| `agencies` | Top-level organizations | name, logo, owner_id |
+| `teams` | Team groupings within agencies | name, agency_id |
+| `team_members` | Human + AI members (hybrid) | name, role, type (HUMAN/AI), status, performance |
+| `agents` | AI agent configurations | agent_type, capabilities, model_id, system_prompt, accuracy |
+| `tasks` | Task management | title, status, priority, category, assigned_to, time_spent |
+| `kanban_cards` | Kanban board state | task_id, column, position, tags, qa_status |
+| `task_attachments` | File uploads on tasks | name, url, type, size |
+| `workflows` | Workflow definitions | name, status, diagram_code, steps count |
+| `workflow_steps` | Individual workflow steps | workflow_id, agent_id, position, config |
+| `workflow_agents` | Agent-to-workflow assignments | workflow_id, agent_id, role |
+| `scheduled_tasks` | Weekly planner entries | day, start_time, end_time, priority, status |
+| `time_entries` | Check-in/check-out records | date, check_in, check_out, total_hours |
+| `time_entry_tasks` | Per-task time logging | time_entry_id, task_id, time_spent |
+| `analytics_snapshots` | Historical performance data | tasks_completed, bugs_resolved, team_efficiency |
+| `agent_logs` | Agent execution audit trail | action, input, output, duration_ms |
+| `notifications` | User notification system | title, message, type, read |
+| `embeddings` | RAG/vector search metadata | source_type, source_id, content, qdrant_point_id |
+
+### Design Decisions
+
+- **UUID primary keys** — distributed-safe, no sequential ID leakage
+- **Soft references via JSONB** — agent capabilities, kanban tags, and workflow configs use JSONB for schema flexibility without migrations
+- **Enum types** — PostgreSQL enums for status fields ensure data integrity at the database level
+- **Cascading deletes** — agency deletion cascades through teams → members → agents → logs, keeping the database clean
+- **Indexed queries** — indexes on all foreign keys plus composite indexes on high-frequency query patterns (agency+date for analytics, user+read for notifications)
+- **Separation of concerns** — `team_members` holds the unified human/AI identity; `agents` extends it with AI-specific config. This lets the Kanban, planner, and analytics treat humans and agents identically
+
+---
+
+## Agent Architecture & Dependencies
+
+### Agent Types and Their Roles
+
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  PROCESSOR   │────▶│  ANALYZER   │────▶│   CREATOR   │
+│ Data cleaning│     │ Pattern     │     │ Text/image  │
+│ Validation   │     │ recognition │     │ generation  │
+│ Format conv. │     │ Statistics  │     │ Templates   │
+└─────────────┘     └─────────────┘     └──────┬──────┘
+                                               │
+                                               ▼
+                                        ┌─────────────┐     ┌─────────────┐
+                                        │  REVIEWER    │────▶│  DEPLOYER   │
+                                        │ Quality check│     │ Publishing  │
+                                        │ Error detect │     │ Delivery    │
+                                        │ Suggestions  │     │ Monitoring  │
+                                        └─────────────┘     └─────────────┘
+```
+
+### How Agents Depend on Each Other
+
+1. **Processor → Analyzer**: Raw data flows in, gets cleaned and validated, then passed to the analyzer for pattern extraction
+2. **Analyzer → Creator**: Insights and structured data feed into content creation agents
+3. **Creator → Reviewer**: Generated content goes through quality gates before deployment
+4. **Reviewer → Deployer**: Approved content gets published; rejected content loops back to Creator
+5. **All → Workflow Manager**: A meta-agent that orchestrates the pipeline, handles retries, and manages the execution DAG
+
+### RAG & Embeddings Pipeline
+
+The platform uses a hybrid approach for intelligent retrieval:
+
+1. **Content ingestion** — tasks, documents, and agent outputs are stored in Postgres (`embeddings` table)
+2. **Vector indexing** — content is embedded and stored in Qdrant Cloud with the `qdrant_point_id` linking back to the source
+3. **Semantic search** — agents query Qdrant for relevant context before reasoning
+4. **Context injection** — retrieved documents are injected into the Groq LLM prompt for grounded responses
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js 18+**
+- **pnpm** (recommended)
+- **Neon Postgres** account — [neon.tech](https://neon.tech)
+- **Groq API key** — [console.groq.com/keys](https://console.groq.com/keys)
+- **Qdrant Cloud** account — [cloud.qdrant.io](https://cloud.qdrant.io)
+- **Exa API key** — [exa.ai](https://exa.ai)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/nodeblackbox/groqy-agent-onboard.git
+cd groqy-agent-onboard
+
+# Install dependencies
+npx pnpm install
+
+# Copy environment template and fill in your keys
+cp .env.example .env.local
+
+# Run database migration (creates all 18 tables)
+npx pnpm db:migrate
+
+# Start the development server
+npx pnpm dev
+```
+
+### Environment Variables
+
+```env
+# Groq API — powers all AI agent reasoning
+GROQ_API_KEY=your_key
+NEXT_PUBLIC_GROQ_API_KEY=your_key
+
+# Neon Postgres — persistent storage
+DATABASE_URL=postgresql://user:pass@host/db?sslmode=require
+PGHOST=your_neon_host
+PGDATABASE=neondb
+PGUSER=neondb_owner
+PGPASSWORD=your_password
+PGSSLMODE=require
+
+# Qdrant — vector search and RAG
+QDRANT_URL=https://your-cluster.qdrant.io:6333
+QDRANT_API_KEY=your_key
+
+# Exa — web search for agents
+EXA_API_KEY=your_key
+
+# Team config
+TEAM_ID=your_team_id
+TEAM_RATE_LIMIT=10
+```
+
+---
+
+## Available Scripts
+
+```bash
+npx pnpm dev          # Start development server (Turbopack)
+npx pnpm build        # Production build
+npx pnpm start        # Start production server
+npx pnpm lint         # Run ESLint
+npx pnpm db:migrate   # Run database migrations
+npx pnpm db:generate  # Generate Drizzle migration files
+npx pnpm db:studio    # Open Drizzle Studio (visual DB browser)
+```
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/db/health` | Database connection health check |
+| `POST` | `/api/db/migrate` | Run database migrations via HTTP |
+
+---
+
+## Security
+
+- API keys are stored exclusively in environment variables, never committed to source control
+- Server-side API routes handle all sensitive operations (database queries, LLM calls)
+- Rate limiting configured per team (`TEAM_RATE_LIMIT`)
+- PostgreSQL connection uses SSL (`sslmode=require`)
+- UUID primary keys prevent sequential ID enumeration
+
+## Performance
+
+- **Groq LLM inference** — sub-second response times for agent reasoning
+- **Neon Serverless Postgres** — auto-scaling, zero cold starts, branching for dev/staging
+- **Turbopack** — Next.js 16 development builds in milliseconds
+- **Drizzle ORM** — zero-overhead SQL generation, no N+1 queries
+- **Indexed queries** — all high-frequency access patterns are indexed
+
+---
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -m 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a Pull Request
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+## Links
+
+- **Groq Console**: [console.groq.com](https://console.groq.com)
+- **Neon Postgres**: [neon.tech](https://neon.tech)
+- **Qdrant Cloud**: [cloud.qdrant.io](https://cloud.qdrant.io)
+- **Exa Search**: [exa.ai](https://exa.ai)
+- **Next.js Docs**: [nextjs.org/docs](https://nextjs.org/docs)
+- **Drizzle ORM**: [orm.drizzle.team](https://orm.drizzle.team)
+- **shadcn/ui**: [ui.shadcn.com](https://ui.shadcn.com)
+
+---
+
+**Built by [nodeblackbox](https://github.com/nodeblackbox)** — Groqy Agent is a production-grade demonstration of full-stack engineering, AI agent orchestration, and human-AI hybrid team management.
